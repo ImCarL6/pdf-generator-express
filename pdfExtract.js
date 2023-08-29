@@ -3,7 +3,7 @@ import { S3, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { v4 as uuidv4 } from "uuid";
 import { configDotenv } from "dotenv";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 configDotenv();
 
@@ -28,17 +28,10 @@ const generatePDF = async (res, language) => {
           region: process.env.AWS_REGION_RESUME,
         });
       
-        const browser = await puppeteer.launch({
-          args: [
-            "--disable-setuid-sandbox",
-            "--no-sandbox",
-            "--single-process",
-            "--no-zygote",
-          ],
-          executablePath:
-            process.env.NODE_ENV === "production"
-              ? process.env.PUPPETEER_EXECUTABLE_PATH
-              : puppeteer.executablePath()
+        const browserlessKey = process.env.BROWSERLESS_KEY;
+    
+        const browser = await connect({
+          browserWSEndpoint: browserlessKey,
         });
       
         console.log("Puppeteer Connected.");
