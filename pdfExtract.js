@@ -18,6 +18,8 @@ const generatePDF = async (res, language) => {
     try{
         const resumeUrl = createUrl(process.env.RESUME_SITE, language);
 
+        console.log(resumeUrl);
+
         const s3 = new S3({
           credentials: {
             accessKeyId: process.env.AWS_KEY,
