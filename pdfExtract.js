@@ -130,6 +130,7 @@ const generatePDF = async (res, language) => {
         res.send(url);
     } catch (err){
         console.log(err)
+        res.send(err)
     }
 };
 
