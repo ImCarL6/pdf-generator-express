@@ -36,8 +36,7 @@ const generatePDF = async (res, language) => {
           executablePath:
             process.env.NODE_ENV === "production"
               ? process.env.PUPPETEER_EXECUTABLE_PATH
-              : puppeteer.executablePath(),
-          headless: 'new'
+              : puppeteer.executablePath()
         });
       
         console.log("Puppeteer Connected.");
@@ -132,7 +131,6 @@ const generatePDF = async (res, language) => {
     } catch (err){
         console.log(err)
     }
-  
 };
 
 export { generatePDF };
