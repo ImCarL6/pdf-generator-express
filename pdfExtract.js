@@ -43,7 +43,7 @@ const generatePDF = async (res, language) => {
       
         const page = await browser.newPage();
       
-        await page.goto(resumeUrl);
+        await page.goto(resumeUrl, {waitUntil: 'domcontentloaded'});
       
         await page.waitForSelector("#bd-container");
         await page.waitForSelector(".home__img");
